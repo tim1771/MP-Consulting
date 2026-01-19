@@ -122,7 +122,7 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
           >
             <div className="hero-image-wrapper">
-              <img src="/logo.png" alt="MP Consulting" className="hero-logo-image" />
+              <img src="/car.png" alt="MP Consulting" className="hero-logo-image" />
               <div className="hero-image-glow"></div>
             </div>
           </motion.div>
