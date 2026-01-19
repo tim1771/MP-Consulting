@@ -2,11 +2,77 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mp-consulting-website</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>MP Consulting | Trusted Automotive Experts - Steering You Right</title>
+    <meta name="title" content="MP Consulting | Trusted Automotive Experts - Steering You Right" />
+    <meta name="description" content="MP Consulting provides expert automotive consulting services including vehicle inspections, purchase consultations, maintenance advice, and repair guidance. 25+ years of experience helping consumers make informed automotive decisions." />
+    <meta name="keywords" content="automotive consulting, car inspection, vehicle inspection, car buying advice, auto repair guidance, maintenance advice, car purchase consultation, automotive expert" />
+    <meta name="author" content="MP Consulting" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://mp-consulting.netlify.app/" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mp-consulting.netlify.app/" />
+    <meta property="og:title" content="MP Consulting | Trusted Automotive Experts" />
+    <meta property="og:description" content="Expert automotive consulting services - vehicle inspections, purchase consultations, maintenance advice, and repair guidance. 25+ years of experience." />
+    <meta property="og:image" content="https://mp-consulting.netlify.app/car.png" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="MP Consulting" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://mp-consulting.netlify.app/" />
+    <meta property="twitter:title" content="MP Consulting | Trusted Automotive Experts" />
+    <meta property="twitter:description" content="Expert automotive consulting services - vehicle inspections, purchase consultations, maintenance advice, and repair guidance." />
+    <meta property="twitter:image" content="https://mp-consulting.netlify.app/car.png" />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#00d4aa" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MP Consulting",
+      "description": "Expert automotive consulting services including vehicle inspections, purchase consultations, maintenance advice, and repair guidance.",
+      "url": "https://mp-consulting.netlify.app/",
+      "logo": "https://mp-consulting.netlify.app/car.png",
+      "image": "https://mp-consulting.netlify.app/car.png",
+      "telephone": "(123) 456-7890",
+      "email": "info@mpconsulting.com",
+      "slogan": "Steering You Right",
+      "foundingDate": "2000",
+      "priceRange": "$$",
+      "serviceType": ["Vehicle Inspection", "Purchase Consultation", "Maintenance Advice", "Repair Guidance"],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Canada"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "500"
+      }
+    }
+    </script>
   </head>
   <body>
+    <!-- Hidden Netlify Form for form detection -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <select name="service"></select>
+      <textarea name="message"></textarea>
+    </form>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

@@ -23,18 +23,37 @@ const Contact = () => {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      const formDataToSend = new FormData()
+      formDataToSend.append('form-name', 'contact')
+      Object.keys(formData).forEach(key => {
+        formDataToSend.append(key, formData[key])
+      })
+
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formDataToSend).toString()
+      })
+
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: '',
+        })
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitStatus('error')
+    }
     
-    setSubmitStatus('success')
     setIsSubmitting(false)
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-    })
   }
 
   const contactInfo = [
@@ -185,8 +204,38 @@ const Contact = () => {
                       Send Another Message
                     </button>
                   </div>
+                ) : submitStatus === 'error' ? (
+                  <div className="error-message">
+                    <div className="error-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                      </svg>
+                    </div>
+                    <h4>Something went wrong</h4>
+                    <p>Please try again or contact us directly via phone or email.</p>
+                    <button 
+                      className="btn btn-secondary"
+                      onClick={() => setSubmitStatus(null)}
+                    >
+                      Try Again
+                    </button>
+                  </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="contact-form">
+                  <form 
+                    onSubmit={handleSubmit} 
+                    className="contact-form"
+                    name="contact"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                  >
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p className="hidden" style={{ display: 'none' }}>
+                      <label>
+                        Don't fill this out if you're human: <input name="bot-field" />
+                      </label>
+                    </p>
                     <div className="form-row">
                       <div className="form-group">
                         <label htmlFor="name">Full Name *</label>

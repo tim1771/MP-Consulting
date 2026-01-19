@@ -1,0 +1,6 @@
+# robots.txt for MP Consulting
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mp-consulting.netlify.app/sitemap.xml
