@@ -71,9 +71,10 @@ const Services = () => {
       id: 'repair',
       title: 'Repair Guidance',
       tagline: 'Honest Repair Decisions',
-      description: 'Facing a big repair bill? We help you understand what\'s truly necessary, get fair pricing, and find reputable shops you can trust.',
+      description: 'Facing a big repair bill? We help you understand what\'s truly necessary, get fair pricing, and find reputable shops you can trust. We can call the dealer on your behalf and discuss your repairs! Knowing the right questions to ask the service advisors will save you money!',
       features: [
         'Repair estimate analysis and validation',
+        'We call dealers on your behalf to discuss repairs',
         'Priority assessment—what\'s urgent vs. optional',
         'Shop recommendation and vetting',
         'Warranty coverage review',
@@ -180,6 +181,42 @@ const Services = () => {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Diesel Performance Specialty */}
+      <section className="specialty-section">
+        <div className="container">
+          <motion.div 
+            className="specialty-card card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="specialty-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <div className="specialty-content">
+              <span className="specialty-badge">Specialty Service</span>
+              <h3>Diesel Performance <span className="gradient-text-orange">Tuning & Parts</span></h3>
+              <p>
+                One of our specialties is diesel performance tuning and parts. Whether you're looking to increase 
+                power, improve fuel efficiency, or upgrade your diesel vehicle's performance, we have the expertise 
+                to help. Ask us about it!
+              </p>
+              <Link to="/contact" className="btn btn-primary">
+                Ask About Diesel Performance
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 

@@ -617,6 +617,151 @@
   }
 }
 
+/* Review Section */
+.review-section {
+  padding: 6rem 0;
+}
+
+.review-content {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.review-content .section-header {
+  margin-bottom: 2rem;
+}
+
+.review-form-wrapper {
+  padding: 2.5rem;
+  text-align: left;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.review-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.review-form .form-group label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray-light);
+  margin-bottom: 0.5rem;
+}
+
+.review-form .form-group input,
+.review-form .form-group textarea {
+  padding: 0.875rem 1rem;
+  background: rgba(0, 2, 5, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.review-form .form-group input::placeholder,
+.review-form .form-group textarea::placeholder {
+  color: var(--gray-medium);
+}
+
+.review-form .form-group input:focus,
+.review-form .form-group textarea:focus {
+  outline: none;
+  border-color: var(--teal-bright);
+  background: rgba(0, 3, 8, 0.98);
+  box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.15);
+}
+
+.review-form .form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.review-form .btn {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+.review-form .spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top-color: var(--white);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.review-success,
+.review-error {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.review-success .success-icon,
+.review-error .error-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.review-success .success-icon {
+  background: linear-gradient(135deg, rgba(0, 212, 170, 0.2), rgba(0, 212, 170, 0.05));
+  color: var(--teal-bright);
+}
+
+.review-error .error-icon {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 107, 53, 0.05));
+  color: var(--orange-primary);
+}
+
+.review-success .success-icon svg,
+.review-error .error-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.review-success h4,
+.review-error h4 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-error h4 {
+  color: var(--orange-primary);
+}
+
+.review-success p,
+.review-error p {
+  color: var(--gray-light);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .review-form-wrapper {
+    padding: 1.5rem;
+  }
+
+  .review-form .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 480px) {
   .hero-badge {
     font-size: 0.75rem;

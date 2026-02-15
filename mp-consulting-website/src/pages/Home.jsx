@@ -1,8 +1,48 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import './Home.css'
 
 const Home = () => {
+  const [reviewData, setReviewData] = useState({ name: '', review: '' })
+  const [reviewSubmitting, setReviewSubmitting] = useState(false)
+  const [reviewStatus, setReviewStatus] = useState(null)
+
+  const handleReviewChange = (e) => {
+    const { name, value } = e.target
+    setReviewData(prev => ({ ...prev, [name]: value }))
+  }
+
+  const handleReviewSubmit = async (e) => {
+    e.preventDefault()
+    setReviewSubmitting(true)
+    
+    try {
+      const formDataToSend = new FormData()
+      formDataToSend.append('form-name', 'reviews')
+      Object.keys(reviewData).forEach(key => {
+        formDataToSend.append(key, reviewData[key])
+      })
+
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formDataToSend).toString()
+      })
+
+      if (response.ok) {
+        setReviewStatus('success')
+        setReviewData({ name: '', review: '' })
+      } else {
+        setReviewStatus('error')
+      }
+    } catch (error) {
+      console.error('Review submission error:', error)
+      setReviewStatus('error')
+    }
+    
+    setReviewSubmitting(false)
+  }
   const services = [
     {
       icon: (
@@ -322,6 +362,122 @@ const Home = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Review Section */}
+      <section className="review-section">
+        <div className="container">
+          <motion.div 
+            className="review-content"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="section-header">
+              <div className="accent-line"></div>
+              <h2>Share Your <span className="gradient-text">Experience</span></h2>
+              <p>How was your experience? We would love to hear from you! Leave your review below.</p>
+            </div>
+
+            <div className="review-form-wrapper card">
+              {reviewStatus === 'success' ? (
+                <div className="review-success">
+                  <div className="success-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                      <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                  </div>
+                  <h4>Thank You!</h4>
+                  <p>We appreciate your feedback. Your review helps us serve our community better.</p>
+                  <button 
+                    className="btn btn-secondary"
+                    onClick={() => setReviewStatus(null)}
+                  >
+                    Submit Another Review
+                  </button>
+                </div>
+              ) : reviewStatus === 'error' ? (
+                <div className="review-error">
+                  <div className="error-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="15" y1="9" x2="9" y2="15"/>
+                      <line x1="9" y1="9" x2="15" y2="15"/>
+                    </svg>
+                  </div>
+                  <h4>Something went wrong</h4>
+                  <p>Please try again later.</p>
+                  <button 
+                    className="btn btn-secondary"
+                    onClick={() => setReviewStatus(null)}
+                  >
+                    Try Again
+                  </button>
+                </div>
+              ) : (
+                <form 
+                  onSubmit={handleReviewSubmit} 
+                  className="review-form"
+                  name="reviews"
+                  data-netlify="true"
+                  netlify-honeypot="bot-field"
+                >
+                  <input type="hidden" name="form-name" value="reviews" />
+                  <p className="hidden" style={{ display: 'none' }}>
+                    <label>
+                      Don't fill this out if you're human: <input name="bot-field" />
+                    </label>
+                  </p>
+                  <div className="form-group">
+                    <label htmlFor="review-name">Your Name</label>
+                    <input
+                      type="text"
+                      id="review-name"
+                      name="name"
+                      value={reviewData.name}
+                      onChange={handleReviewChange}
+                      required
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="review-text">Your Review</label>
+                    <textarea
+                      id="review-text"
+                      name="review"
+                      value={reviewData.review}
+                      onChange={handleReviewChange}
+                      required
+                      rows="4"
+                      placeholder="Share your experience with MP Consulting..."
+                    ></textarea>
+                  </div>
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary"
+                    disabled={reviewSubmitting}
+                  >
+                    {reviewSubmitting ? (
+                      <>
+                        <span className="spinner"></span>
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        Submit Review
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
+                          <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                      </>
+                    )}
+                  </button>
+                </form>
+              )}
+            </div>
+          </motion.div>
         </div>
       </section>
 
